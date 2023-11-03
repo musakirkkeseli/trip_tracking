@@ -63,9 +63,11 @@ class StartView extends StatelessWidget {
                         FocusScope.of(context).unfocus();
                         context
                             .read<HomeBloc>()
-                            .add(DateSet(DateTime(2023, 10, 24)));
+                            .add(DateSet(DateTime(2023, 10, 20)));
                         Provider.of<Managment>(context, listen: false)
                             .goToHomePage();
+                        Provider.of<Managment>(context, listen: false)
+                            .changeDate(DateTime(2023, 10, 20));
                         Navigator.push(
                             context,
                             MaterialPageRoute(

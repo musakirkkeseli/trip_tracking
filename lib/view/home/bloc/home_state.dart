@@ -4,9 +4,6 @@ enum PostStatus {
   initial,
   success,
   failure,
-  singlePostInitial,
-  singlePostSuccess,
-  singlePostFailure
 }
 
 class HomeState {
