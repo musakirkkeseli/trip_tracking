@@ -1,7 +1,7 @@
 import 'package:trip_tracking/features/model/city_model.dart';
 
 class TripRequestModel {
-  String? startDate;
+  DateTime? startDate;
   List<CityModel>? cityModel;
 
   TripRequestModel({this.startDate, this.cityModel});
