@@ -1,0 +1,52 @@
+part of 'home_bloc.dart';
+
+enum PostStatus {
+  beginning,
+  loading,
+  success,
+  failure,
+}
+
+class HomeState {
+  const HomeState({
+    this.status = PostStatus.beginning,
+    this.success = true,
+    this.sonFlag = false,
+    this.flag = 0,
+    this.date,
+    this.isSelectedCityName = false,
+    this.textFieldDataSize = 0,
+    this.tripModel,
+  });
+
+  final PostStatus status;
+  final bool success;
+  final bool sonFlag;
+  final int flag;
+  final DateTime? date;
+  final bool isSelectedCityName;
+  final int textFieldDataSize;
+  final TripRequestModel? tripModel;
+
+  HomeState copyWith({
+    PostStatus? status,
+    bool? success,
+    bool? sonFlag,
+    int? flag,
+    DateTime? date,
+    bool? isSelectedCityName,
+    int? textFieldDataSize,
+    TripRequestModel? tripModel,
+  }) {
+    return HomeState(
+      status: status ?? this.status,
+      success: success ?? this.success,
+      sonFlag: sonFlag ?? this.sonFlag,
+      flag: flag ?? this.flag,
+      date: date ?? this.date,
+      isSelectedCityName: isSelectedCityName ?? this.isSelectedCityName,
+      textFieldDataSize: textFieldDataSize ?? this.textFieldDataSize,
+      tripModel: tripModel ?? this.tripModel,
+    );
+  }
+}

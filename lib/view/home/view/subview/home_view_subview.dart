@@ -10,8 +10,9 @@ import 'package:intl/intl.dart';
 import 'package:trip_tracking/features/widget/time_line_picker_widget.dart';
 
 class HomeWidget extends StatefulWidget {
+  final Widget customWidget;
   final data;
-  const HomeWidget({super.key, this.data});
+  const HomeWidget({super.key, required this.customWidget, this.data});
 
   @override
   State<HomeWidget> createState() => _HomeWidgetState();
@@ -75,7 +76,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         CrossAxisAlignment.center,
                                     children: <Widget>[
                                       Text(
-                                        DateFormat("MMM")
+                                        DateFormat(
+                                                "MMM", ConstantsString.locale)
                                             .format(managment.date)
                                             .toUpperCase(), // Month
                                         style: const TextStyle(
@@ -87,7 +89,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             color: Colors.white),
                                       ),
                                       Text(
-                                        DateFormat("E")
+                                        DateFormat("E", ConstantsString.locale)
                                             .format(managment.date)
                                             .toUpperCase(), // WeekDay
                                         style: const TextStyle(
@@ -104,35 +106,42 @@ class _HomeWidgetState extends State<HomeWidget> {
                       CitiesAnimatedContainer(
                         cities: cities,
                       ),
+                      SizedBox(
+                          width: MediaQuery.sizeOf(context).width,
+                          height: MediaQuery.sizeOf(context).height * .7,
+                          child: widget.customWidget)
                     ],
                   ),
                 ),
                 Positioned(
                     top: 10,
+                    right: 0,
                     child: AnimatedContainer(
                       color: Colors.purple[900],
-                      height: 120,
-                      width: value.isVisible
-                          ? MediaQuery.sizeOf(context).width * .9
+                      height: value.isVisible
+                          ? MediaQuery.sizeOf(context).height * .6
                           : 0,
+                      width: 100,
                       padding: const EdgeInsets.all(8.0),
                       duration: const Duration(milliseconds: 300),
-                      child: TimeLinePickerWidget(
-                        initialSelectedDate: managment.date,
-                        onDateChange: (date) {
-                          Provider.of<Managment>(context, listen: false)
-                              .changeDate(date);
-                          Provider.of<AnimatedProvider>(context, listen: false)
-                              .changeVisible(false);
-                        },
+                      child: RotatedBox(
+                        quarterTurns: 1,
+                        child: TimeLinePickerWidget(
+                          initialSelectedDate: managment.date,
+                          onDateChange: (date) {
+                            Provider.of<Managment>(context, listen: false)
+                                .changeDate(date);
+                            Provider.of<AnimatedProvider>(context,
+                                    listen: false)
+                                .changeVisible(false);
+                          },
+                        ),
                       ),
                     )),
-                Positioned(
-                    height: MediaQuery.sizeOf(context).height,
-                    width: MediaQuery.sizeOf(context).width,
-                    child: const Center(
-                      child: CircularProgressIndicator(),
-                    )),
+                // Positioned(
+                //     height: MediaQuery.sizeOf(context).height,
+                //     width: MediaQuery.sizeOf(context).width,
+                //     child: widget.customWidget ?? SizedBox()),
                 Positioned(
                     bottom: 0,
                     child: InkWell(

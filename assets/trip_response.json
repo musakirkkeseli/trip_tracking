@@ -1,0 +1,79 @@
+{
+    "cities": [
+        {
+            "cityName": "İstanbul",
+            "weathers": [
+                {
+                    "date": "Salı",
+                    "weatherType": 0,
+                    "degree": 25
+                },
+                {
+                    "date": "Çarşamba",
+                    "weatherType": 2,
+                    "degree": 25
+                },
+                {
+                    "date": "Perşembe",
+                    "weatherType": 0,
+                    "degree": 25
+                },
+                {
+                    "date": "Cuma",
+                    "weatherType": 3,
+                    "degree": 25
+                },
+                {
+                    "date": "Cumartesi",
+                    "weatherType": 3,
+                    "degree": 25
+                }
+            ],
+            "hotels": [
+                {
+                    "hotelName": "Yeşil Palas",
+                    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfID3HjGWDQHyuJ5L5Ix-D4-K8vPhN7A4E9q2YwlPtIvJor15JKsrZbG2Ke_Y6NRo_7B0&usqp=CAU"
+                },
+                {
+                    "hotelName": "Hotel Vectors",
+                    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2KCpIRMNeC61hfzhqjHRVKUy3COumZUMm3A&usqp=CAU"
+                },
+                {
+                    "hotelName": "Royal Sebaste Hotel",
+                    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjfRu8rWLLHX5zTN3b15bybOqzwQgZKKbiPA&usqp=CAU"
+                }
+            ]
+        },
+        {
+            "cityName": "Bursa",
+            "weathers": [
+                {
+                    "date": "Pazar",
+                    "weatherType": 1,
+                    "degree": 25
+                },
+                {
+                    "date": "Pazartesi",
+                    "weatherType": 1,
+                    "degree": 25
+                },
+                {
+                    "date": "Salı",
+                    "weatherType": 2,
+                    "degree": 25
+                },
+                {
+                    "date": "Çarşamba",
+                    "weatherType": 4,
+                    "degree": 25
+                }
+            ],
+            "hotels": [
+                {
+                    "hotelName": "Yeşil Palas",
+                    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfID3HjGWDQHyuJ5L5Ix-D4-K8vPhN7A4E9q2YwlPtIvJor15JKsrZbG2Ke_Y6NRo_7B0&usqp=CAU"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,109 @@
+import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:meta/meta.dart';
+import 'package:trip_tracking/features/model/city_model.dart';
+import 'package:trip_tracking/features/model/trip_request_model.dart';
+
+part 'home_event.dart';
+part 'home_state.dart';
+
+class HomeBloc extends Bloc<HomeEvent, HomeState> {
+  HomeBloc() : super(const HomeState()) {
+    on<DoneBeginning>(
+      _gotoHomeView,
+    );
+    on<OnChanged>(
+      _onChanged,
+    );
+    on<SelectCity>(
+      _selectCity,
+    );
+    on<ChangeDate>(
+      _changeDate,
+    );
+    on<ChangeCityDayPlus>(
+      _changeCityDayPlus,
+    );
+    on<ChangeCityDayDecrease>(
+      _changeCityDayDecrease,
+    );
+  }
+
+  String _textFieldData = "";
+  List<CityModel> _selectedCityModelList = [];
+  bool _isSelectedCityName = false;
+  TextEditingController controller = TextEditingController(text: "");
+  DateTime _date = DateTime(2023, 10, 24);
+  bool _isHomePage = false;
+
+  _gotoHomeView(
+    DoneBeginning event,
+    Emitter<HomeState> emit,
+  ) {
+    print("object");
+    _isHomePage = true;
+    controller.clear();
+    return emit(
+        state.copyWith(status: PostStatus.success, tripModel: event.tripModel));
+  }
+
+  _onChanged(
+    OnChanged event,
+    Emitter<HomeState> emit,
+  ) {
+    _textFieldData = event.value;
+    if (_isSelectedCityName) {
+      _isSelectedCityName = false;
+    }
+    return emit(state.copyWith(status: PostStatus.success));
+  }
+
+  _selectCity(
+    SelectCity event,
+    Emitter<HomeState> emit,
+  ) {
+    _textFieldData = "";
+    if (!_isHomePage) {
+      print("sorguya girdi $_isHomePage");
+      _selectedCityModelList = [];
+    }
+    _selectedCityModelList.add(CityModel(city: event.cityName, numOfDay: 1));
+    _isSelectedCityName = true;
+    if (!_isHomePage) {
+      controller.text = event.cityName;
+    } else {
+      controller.clear();
+    }
+    return emit(state.copyWith(status: PostStatus.success));
+  }
+
+  _changeDate(
+    ChangeDate event,
+    Emitter<HomeState> emit,
+  ) {
+    _date = event.date;
+    return emit(state.copyWith(status: PostStatus.success));
+  }
+
+  _changeCityDayPlus(
+    ChangeCityDayPlus event,
+    Emitter<HomeState> emit,
+  ) {
+    int numOfDay = _selectedCityModelList[event.cityIndex].numOfDay ?? 1;
+    _selectedCityModelList[event.cityIndex].numOfDay = numOfDay + 1;
+    return emit(state.copyWith(status: PostStatus.success));
+  }
+
+  _changeCityDayDecrease(
+    ChangeCityDayDecrease event,
+    Emitter<HomeState> emit,
+  ) {
+    int numOfDay = _selectedCityModelList[event.cityIndex].numOfDay ?? 1;
+    if (numOfDay == 1) {
+      _selectedCityModelList.removeAt(event.cityIndex);
+    } else {
+      _selectedCityModelList[event.cityIndex].numOfDay = numOfDay - 1;
+    }
+    return emit(state.copyWith(status: PostStatus.success));
+  }
+}

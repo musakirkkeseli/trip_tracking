@@ -1,0 +1,34 @@
+part of 'home_bloc.dart';
+
+@immutable
+sealed class HomeEvent {}
+
+class DoneBeginning extends HomeEvent {
+  final TripRequestModel tripModel;
+  DoneBeginning(this.tripModel);
+}
+
+class OnChanged extends HomeEvent {
+  final String value;
+  OnChanged(this.value);
+}
+
+class SelectCity extends HomeEvent {
+  final String cityName;
+  SelectCity(this.cityName);
+}
+
+class ChangeDate extends HomeEvent {
+  final DateTime date;
+  ChangeDate(this.date);
+}
+
+class ChangeCityDayPlus extends HomeEvent {
+  final int cityIndex;
+  ChangeCityDayPlus(this.cityIndex);
+}
+
+class ChangeCityDayDecrease extends HomeEvent {
+  final int cityIndex;
+  ChangeCityDayDecrease(this.cityIndex);
+}

@@ -6,10 +6,8 @@ class ErrorView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text(ConstantsString.errorMessage),
-      ),
+    return const Center(
+      child: Text(ConstantsString.errorMessage),
     );
   }
 }
